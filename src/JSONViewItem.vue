@@ -1,24 +1,27 @@
 <template>
   <div class="json-view-item">
     <div v-if="data.type === 'object'">
-      <span class="data-key opened">{{ data.key }}</span>
+      <span @click.stop="toggleOpen" :class="classes">{{ data.key }}</span>
       <json-view-item
-        class="item"
         v-for="child in data.children"
         :key="getKey(child)"
         :data="child"
+        v-show="open"
       />
     </div>
     <div v-if="data.type === 'array'">
-      <span class="data-key">{{ data.key }}</span>
+      <span @click.stop="toggleOpen" :class="classes">{{ data.key }}</span>
       <json-view-item
-        class="item"
         v-for="child in data.children"
         :key="getKey(child)"
         :data="child"
+        v-show="open"
       />
     </div>
-    <div v-if="data.type === 'value'">{{ data.key }}: {{ data.value }}</div>
+    <div v-if="data.type === 'value'">
+      <span class="value-key">{{ data.key }}</span
+      >: {{ data.value }}
+    </div>
   </div>
 </template>
 
@@ -39,6 +42,9 @@ export default Vue.extend({
     }
   },
   methods: {
+    toggleOpen: function(): void {
+      this.open = !this.open;
+    },
     getKey: function(value: any): string {
       if (!isNaN(value.key)) {
         return value.key + ":";
@@ -46,29 +52,49 @@ export default Vue.extend({
         return '"' + value.key + '":';
       }
     }
+  },
+  computed: {
+    classes: function(): object {
+      return {
+        "data-key": true,
+        opened: this.open
+      };
+    }
   }
 });
 </script>
 
 <style lang="scss" scoped>
-.item {
-  padding: 2px 0px 2px 20px;
+.json-view-item {
+  margin-left: 20px;
+  padding: 5px;
 }
+
 .data-key {
   display: flex;
+  cursor: pointer;
   align-items: center;
-  line-height: 30px;
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.15);
+  }
 }
 
 .data-key.opened::before {
   margin-top: 2px;
+  margin-bottom: -4px;
   transform: rotate(90deg);
 }
+
 .data-key::before {
   color: #444;
+  position: relative;
+  left: 15px;
+  margin-right: 30px;
   content: "\25b6";
-  font-size: 12px;
   margin-top: -2px;
-  transition: transform 0.1s ease;
+}
+
+.value-key {
+  margin-left: 15px;
 }
 </style>
