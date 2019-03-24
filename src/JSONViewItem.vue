@@ -2,11 +2,11 @@
   <div class="json-view-item">
     <!-- Handle Objects and Arrays-->
     <div v-if="data.type === 'object' || data.type === 'array'">
-      <span @click.stop="toggleOpen" class="data-key" :style="keyColor">
+      <div @click.stop="toggleOpen" class="data-key" :style="keyColor">
         <div :class="classes"></div>
-        <span class="arrow"></span>{{ data.key }}:
+        {{ data.key }}:
         <span class="properties">&nbsp;{{ lengthString }}</span>
-      </span>
+      </div>
       <json-view-item
         v-for="child in data.children"
         :key="getKey(child)"
@@ -17,8 +17,8 @@
       />
     </div>
     <!-- Handle Leaf Values -->
-    <div v-if="data.type === 'value'">
-      <span class="value-key" :style="valueKeyColor"> {{ data.key }}: </span>
+    <div class="value-key" v-if="data.type === 'value'">
+      <span :style="valueKeyColor"> {{ data.key }}: </span>
       <span :style="getValueStyle(data.value)">
         {{ JSON.stringify(data.value) }}
       </span>
@@ -133,7 +133,7 @@ export default Vue.extend({
 }
 
 .chevron-arrow {
-  display: inline-block;
+  flex-shrink: 0;
   border-right: 4px solid #444;
   border-bottom: 4px solid #444;
   width: 6px;

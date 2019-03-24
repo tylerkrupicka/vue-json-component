@@ -101,4 +101,8 @@ export default Vue.extend({
 });
 </script>
 
-<style lang="scss"></style>
+<style lang="scss">
+#json-view {
+  width: 100%;
+}
+</style>

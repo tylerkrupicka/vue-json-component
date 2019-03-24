@@ -46,5 +46,9 @@ export default Vue.extend({
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   font-size: 20px;
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.03);
+  overflow-x: auto;
+  display: flex;
 }
 </style>
