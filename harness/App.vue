@@ -50,5 +50,6 @@ export default Vue.extend({
   background-color: rgba(0, 0, 0, 0.03);
   overflow-x: auto;
   display: flex;
+  flex-direction: column;
 }
 </style>

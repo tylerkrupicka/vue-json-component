@@ -1,6 +1,5 @@
 <template>
   <div id="json-view">
-    <br />
     <json-view-item
       :data="parsed"
       :maxDepth="maxDepth"
@@ -104,5 +103,6 @@ export default Vue.extend({
 <style lang="scss">
 #json-view {
   width: 100%;
+  height: auto;
 }
 </style>
