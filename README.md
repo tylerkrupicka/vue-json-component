@@ -56,7 +56,7 @@ const defaultStyles = {
     :styles="{ key: '#0977e6' }"
   />
 </template>
-
+```
 
 ## Development
 
