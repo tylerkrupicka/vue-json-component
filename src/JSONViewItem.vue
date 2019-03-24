@@ -10,6 +10,7 @@
         :key="getKey(child)"
         :data="child"
         v-show="open"
+        :maxDepth="maxDepth"
       />
     </div>
     <div v-if="data.type === 'array'">
@@ -22,6 +23,7 @@
         :key="getKey(child)"
         :data="child"
         v-show="open"
+        :maxDepth="maxDepth"
       />
     </div>
     <div v-if="data.type === 'value'">
@@ -38,13 +40,18 @@ export default Vue.extend({
   name: "json-view-item",
   data: function() {
     return {
-      open: true
+      open: this.data.depth < this.maxDepth
     };
   },
   props: {
     data: {
       required: true,
       type: Object
+    },
+    maxDepth: {
+      type: Number,
+      required: false,
+      default: 10
     }
   },
   methods: {

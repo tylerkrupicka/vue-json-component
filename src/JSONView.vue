@@ -1,7 +1,7 @@
 <template>
   <div id="json-view">
     <br />
-    <json-view-item :data="parsed" />
+    <json-view-item :data="parsed" :maxDepth="maxDepth" />
   </div>
 </template>
 
@@ -19,6 +19,11 @@ export default Vue.extend({
       type: String,
       required: false,
       default: "root"
+    },
+    maxDepth: {
+      type: Number,
+      required: false,
+      default: 10
     }
   },
   components: {

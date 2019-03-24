@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     harness
-    <json-view :data="data" rootKey="view"></json-view>
+    <json-view :data="data" rootKey="view" :maxDepth="1"></json-view>
   </div>
 </template>
 
