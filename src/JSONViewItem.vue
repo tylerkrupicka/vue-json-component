@@ -1,8 +1,9 @@
 <template>
   <div class="json-view-item">
-    <div v-if="data.type === 'object'">
-      <span @click.stop="toggleOpen" :class="classes"
-        >{{ data.key }}:
+    <!-- Handle Objects and Arrays-->
+    <div v-if="data.type === 'object' || data.type === 'array'">
+      <span @click.stop="toggleOpen" :class="classes" :style="keyColor">
+        {{ data.key }}:
         <span class="properties">&nbsp;{{ lengthString }}</span>
       </span>
       <json-view-item
@@ -11,24 +12,15 @@
         :data="child"
         v-show="open"
         :maxDepth="maxDepth"
+        :styles="styles"
       />
     </div>
-    <div v-if="data.type === 'array'">
-      <span @click.stop="toggleOpen" :class="classes"
-        >{{ data.key }}:
-        <span class="properties">&nbsp;{{ lengthString }}</span>
-      </span>
-      <json-view-item
-        v-for="child in data.children"
-        :key="getKey(child)"
-        :data="child"
-        v-show="open"
-        :maxDepth="maxDepth"
-      />
-    </div>
+    <!-- Handle Leaf Values -->
     <div v-if="data.type === 'value'">
-      <span class="value-key">{{ data.key }}</span
-      >: {{ data.value }}
+      <span class="value-key" :style="valueKeyColor"> {{ data.key }}: </span>
+      <span :style="getValueStyle(data.value)">
+        {{ JSON.stringify(data.value) }}
+      </span>
     </div>
   </div>
 </template>
@@ -51,7 +43,11 @@ export default Vue.extend({
     maxDepth: {
       type: Number,
       required: false,
-      default: 10
+      default: 1
+    },
+    styles: {
+      type: Object,
+      required: true
     }
   },
   methods: {
@@ -63,6 +59,21 @@ export default Vue.extend({
         return value.key + ":";
       } else {
         return '"' + value.key + '":';
+      }
+    },
+    getValueStyle: function(value: any): object {
+      const type = typeof value;
+      switch (type) {
+        case "string":
+          return { color: this.styles.string };
+        case "number":
+          return { color: this.styles.number };
+        case "boolean":
+          return { color: this.styles.boolean };
+        case "object":
+          return { color: this.styles.null };
+        default:
+          return { color: this.styles.valueKeyColor };
       }
     }
   },
@@ -77,6 +88,12 @@ export default Vue.extend({
       return this.data.length === 1
         ? this.data.length + " property"
         : this.data.length + " properties";
+    },
+    keyColor: function(): object {
+      return { color: this.styles.key };
+    },
+    valueKeyColor: function(): object {
+      return { color: this.styles.valueKey };
     }
   }
 });
@@ -88,15 +105,22 @@ export default Vue.extend({
   padding: 5px;
 }
 
+.value-key {
+  font-weight: 600;
+  margin-left: 15px;
+}
+
 .data-key {
   display: flex;
-  cursor: pointer;
   align-items: center;
   border-radius: 2px;
   font-weight: 600;
+  cursor: pointer;
+
   &:hover {
     background-color: rgba(0, 0, 0, 0.08);
   }
+
   .properties {
     font-weight: 300;
     opacity: 0.6;
@@ -104,25 +128,20 @@ export default Vue.extend({
   }
 }
 
-.data-key.opened::before {
-  margin-top: 0px;
-  margin-bottom: 0px;
-  transform: rotate(90deg);
-}
-
 .data-key::before {
   color: #444;
   position: relative;
   left: 15px;
-  margin-right: 30px;
+  margin-right: 25px;
   user-select: none;
   content: "\25b6";
   margin-top: -2px;
   margin-bottom: 2px;
 }
 
-.value-key {
-  font-weight: 600;
-  margin-left: 15px;
+.data-key.opened::before {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  transform: rotate(90deg);
 }
 </style>

@@ -1,7 +1,11 @@
 <template>
   <div id="json-view">
     <br />
-    <json-view-item :data="parsed" :maxDepth="maxDepth" />
+    <json-view-item
+      :data="parsed"
+      :maxDepth="maxDepth"
+      :styles="customStyles"
+    />
   </div>
 </template>
 
@@ -23,7 +27,11 @@ export default Vue.extend({
     maxDepth: {
       type: Number,
       required: false,
-      default: 10
+      default: 1
+    },
+    styles: {
+      type: Object,
+      required: false
     }
   },
   components: {
@@ -77,6 +85,17 @@ export default Vue.extend({
   computed: {
     parsed: function(): object {
       return this.build(this.rootKey, { ...this.data }, 0);
+    },
+    customStyles: function(): object {
+      const target = {
+        key: "#002b36",
+        valueKey: "#073642",
+        string: "#268bd2",
+        number: "#2aa198",
+        boolean: "#cb4b16",
+        null: "#6c71c4"
+      };
+      return Object.assign(target, this.styles);
     }
   }
 });

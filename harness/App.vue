@@ -1,7 +1,12 @@
 <template>
   <div id="app">
     harness
-    <json-view :data="data" rootKey="view" :maxDepth="1"></json-view>
+    <json-view
+      :data="data"
+      rootKey="view"
+      :maxDepth="1"
+      :styles="{ key: '#0977e6' }"
+    ></json-view>
   </div>
 </template>
 
@@ -16,6 +21,8 @@ import JSONView from "../src/JSONView.vue";
       const test = {
         first: "level",
         works: true,
+        number: 100,
+        missing: null,
         list: [
           "fun",
           {
