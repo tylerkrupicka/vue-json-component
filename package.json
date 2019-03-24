@@ -1,6 +1,6 @@
 {
   "name": "vue-json-component",
-  "version": "0.1.13",
+  "version": "0.1.14",
   "description": "A VueJS JSON Tree View with no dependencies and module builds.",
   "keywords": [
     "vue",
@@ -26,6 +26,7 @@
   "scripts": {
     "serve": "vue-cli-service serve harness/main.ts",
     "build": "bili",
+    "build:docs": "vue-cli-service build --name JSONView --dest docs harness/main.ts",
     "lint": "vue-cli-service lint"
   },
   "files": [

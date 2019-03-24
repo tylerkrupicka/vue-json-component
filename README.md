@@ -8,7 +8,7 @@ A collapsable tree view for JSON. This package is loosely based on [vue-json-tre
 
 ## Philosophy
 
-This package has two major improvements over predecessors: builds and customization. For builds, this package ships CommonKS, Module, and Minified builds with limited external dependencies. [vue-json-tree-view](https://github.com/michaelfitzhavey/vue-json-tree-view) bundles in lodash making it very bloated. I also export both global and local Vue imports, and overall drastically slimmed down the code in this component.
+This package has two major improvements over predecessors: builds and customization. For builds, this package ships CommonJS, Module, and Minified builds with limited external dependencies. [vue-json-tree-view](https://github.com/michaelfitzhavey/vue-json-tree-view) bundles in lodash making it very bloated. I also export both global and local Vue imports, and overall drastically slimmed down the code in this component.
 
 The styles in this package are all scoped, with key colors still being customizable. There are no extra margins or overflow rules and text properties are all inherited from the page. This makes the view much easier to integrate anywhere you need it.
 
