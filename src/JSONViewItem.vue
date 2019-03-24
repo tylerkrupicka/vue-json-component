@@ -103,22 +103,23 @@ export default Vue.extend({
 <style lang="scss" scoped>
 .json-view-item {
   margin-left: 20px;
-  padding: 5px;
 }
 
 .value-key {
   font-weight: 600;
   margin-left: 15px;
+  white-space: nowrap;
+  padding: 5px;
 }
 
 .data-key {
   display: flex;
-  padding: 5px;
   align-items: center;
   border-radius: 2px;
   font-weight: 600;
   cursor: pointer;
   white-space: nowrap;
+  padding: 5px;
 
   &:hover {
     background-color: rgba(0, 0, 0, 0.08);
@@ -142,6 +143,7 @@ export default Vue.extend({
   transform: rotate(-45deg);
 
   &.opened {
+    margin-top: -3px;
     transform: rotate(45deg);
   }
 }
