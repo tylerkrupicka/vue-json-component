@@ -11,7 +11,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import Vue from "vue";
 import JSONView from "../src/JSONView.vue";
 
 export default Vue.extend({
