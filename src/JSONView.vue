@@ -15,9 +15,10 @@ export default Vue.extend({
       required: true,
       type: Object
     },
-    root: {
+    rootKey: {
       type: String,
-      required: false
+      required: false,
+      default: "root"
     }
   },
   components: {
@@ -26,6 +27,7 @@ export default Vue.extend({
   methods: {
     build: function(key: string, val: any, depth: number): object {
       if (this.isObject(val)) {
+        // Build Object
         let children = [];
         for (let [childKey, childValue] of Object.entries(val)) {
           children.push(this.build(childKey, childValue, depth + 1));
@@ -38,6 +40,7 @@ export default Vue.extend({
           children: children
         };
       } else if (this.isArray(val)) {
+        // Build Array
         let children = [];
         for (let i = 0; i < val.length; i++) {
           children.push(this.build(i.toString(), val[i], depth + 1));
@@ -50,6 +53,7 @@ export default Vue.extend({
           children: children
         };
       } else {
+        // Build Value
         return {
           key: key,
           type: "value",
@@ -67,7 +71,7 @@ export default Vue.extend({
   },
   computed: {
     parsed: function(): object {
-      return this.build("root", { ...this.data }, 0);
+      return this.build(this.rootKey, { ...this.data }, 0);
     }
   }
 });

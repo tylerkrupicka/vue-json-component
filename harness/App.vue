@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     harness
-    <json-view :data="data"></json-view>
+    <json-view :data="data" rootKey="view"></json-view>
   </div>
 </template>
 
@@ -39,7 +39,6 @@ export default class App extends Vue {}
 #app {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-
-  font-size: 40px;
+  font-size: 20px;
 }
 </style>

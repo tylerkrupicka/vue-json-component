@@ -1,7 +1,10 @@
 <template>
   <div class="json-view-item">
     <div v-if="data.type === 'object'">
-      <span @click.stop="toggleOpen" :class="classes">{{ data.key }}</span>
+      <span @click.stop="toggleOpen" :class="classes"
+        >{{ data.key }}: &nbsp;
+        <span class="properties">{{ data.length }} properties</span>
+      </span>
       <json-view-item
         v-for="child in data.children"
         :key="getKey(child)"
@@ -10,7 +13,10 @@
       />
     </div>
     <div v-if="data.type === 'array'">
-      <span @click.stop="toggleOpen" :class="classes">{{ data.key }}</span>
+      <span @click.stop="toggleOpen" :class="classes"
+        >{{ data.key }}: &nbsp;
+        <span class="properties">{{ data.length }} properties</span>
+      </span>
       <json-view-item
         v-for="child in data.children"
         :key="getKey(child)"
@@ -74,14 +80,20 @@ export default Vue.extend({
   display: flex;
   cursor: pointer;
   align-items: center;
+  border-radius: 2px;
+  font-weight: 600;
   &:hover {
-    background-color: rgba(0, 0, 0, 0.15);
+    background-color: rgba(0, 0, 0, 0.08);
+  }
+  .properties {
+    font-weight: 300;
+    opacity: 0.6;
   }
 }
 
 .data-key.opened::before {
-  margin-top: 2px;
-  margin-bottom: -4px;
+  margin-top: 0px;
+  margin-bottom: 0px;
   transform: rotate(90deg);
 }
 
@@ -92,9 +104,11 @@ export default Vue.extend({
   margin-right: 30px;
   content: "\25b6";
   margin-top: -2px;
+  margin-bottom: 2px;
 }
 
 .value-key {
+  font-weight: 600;
   margin-left: 15px;
 }
 </style>
