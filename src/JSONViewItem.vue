@@ -2,8 +2,8 @@
   <div class="json-view-item">
     <div v-if="data.type === 'object'">
       <span @click.stop="toggleOpen" :class="classes"
-        >{{ data.key }}: &nbsp;
-        <span class="properties">{{ data.length }} properties</span>
+        >{{ data.key }}:
+        <span class="properties">&nbsp;{{ lengthString }}</span>
       </span>
       <json-view-item
         v-for="child in data.children"
@@ -15,8 +15,8 @@
     </div>
     <div v-if="data.type === 'array'">
       <span @click.stop="toggleOpen" :class="classes"
-        >{{ data.key }}: &nbsp;
-        <span class="properties">{{ data.length }} properties</span>
+        >{{ data.key }}:
+        <span class="properties">&nbsp;{{ lengthString }}</span>
       </span>
       <json-view-item
         v-for="child in data.children"
@@ -72,6 +72,11 @@ export default Vue.extend({
         "data-key": true,
         opened: this.open
       };
+    },
+    lengthString: function(): string {
+      return this.data.length === 1
+        ? this.data.length + " property"
+        : this.data.length + " properties";
     }
   }
 });
@@ -95,6 +100,7 @@ export default Vue.extend({
   .properties {
     font-weight: 300;
     opacity: 0.6;
+    user-select: none;
   }
 }
 
@@ -109,6 +115,7 @@ export default Vue.extend({
   position: relative;
   left: 15px;
   margin-right: 30px;
+  user-select: none;
   content: "\25b6";
   margin-top: -2px;
   margin-bottom: 2px;
