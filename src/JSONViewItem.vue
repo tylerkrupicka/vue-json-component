@@ -2,8 +2,9 @@
   <div class="json-view-item">
     <!-- Handle Objects and Arrays-->
     <div v-if="data.type === 'object' || data.type === 'array'">
-      <span @click.stop="toggleOpen" :class="classes" :style="keyColor">
-        {{ data.key }}:
+      <span @click.stop="toggleOpen" class="data-key" :style="keyColor">
+        <div :class="classes"></div>
+        <span class="arrow"></span>{{ data.key }}:
         <span class="properties">&nbsp;{{ lengthString }}</span>
       </span>
       <json-view-item
@@ -80,7 +81,7 @@ export default Vue.extend({
   computed: {
     classes: function(): object {
       return {
-        "data-key": true,
+        "chevron-arrow": true,
         opened: this.open
       };
     },
@@ -112,10 +113,12 @@ export default Vue.extend({
 
 .data-key {
   display: flex;
+  padding: 5px;
   align-items: center;
   border-radius: 2px;
   font-weight: 600;
   cursor: pointer;
+  white-space: nowrap;
 
   &:hover {
     background-color: rgba(0, 0, 0, 0.08);
@@ -128,20 +131,18 @@ export default Vue.extend({
   }
 }
 
-.data-key::before {
-  color: #444;
-  position: relative;
-  left: 15px;
-  margin-right: 25px;
-  user-select: none;
-  content: "\25b6";
-  margin-top: -2px;
-  margin-bottom: 2px;
-}
+.chevron-arrow {
+  display: inline-block;
+  border-right: 4px solid #444;
+  border-bottom: 4px solid #444;
+  width: 6px;
+  height: 6px;
+  margin-right: 20px;
+  margin-left: 5px;
+  transform: rotate(-45deg);
 
-.data-key.opened::before {
-  margin-top: 0px;
-  margin-bottom: 0px;
-  transform: rotate(90deg);
+  &.opened {
+    transform: rotate(45deg);
+  }
 }
 </style>
