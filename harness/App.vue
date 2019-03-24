@@ -14,7 +14,7 @@
 import { Component, Vue } from "vue-property-decorator";
 import JSONView from "../src/JSONView.vue";
 
-@Component({
+export default Vue.extend({
   components: { "json-view": JSONView },
   computed: {
     data: function() {
@@ -38,8 +38,7 @@ import JSONView from "../src/JSONView.vue";
       return test;
     }
   }
-})
-export default class App extends Vue {}
+});
 </script>
 
 <style lang="scss">
