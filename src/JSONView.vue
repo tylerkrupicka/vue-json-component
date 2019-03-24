@@ -1,6 +1,7 @@
 <template>
   <div id="json-view">
     <json-view-item
+      id="root-item"
       :data="parsed"
       :maxDepth="maxDepth"
       :styles="customStyles"
@@ -13,6 +14,7 @@ import Vue from "vue";
 import JSONViewItem from "./JSONViewItem.vue";
 
 export default Vue.extend({
+  name: "json-view",
   props: {
     data: {
       required: true,
@@ -104,5 +106,8 @@ export default Vue.extend({
 #json-view {
   width: 100%;
   height: auto;
+}
+#root-item {
+  margin-left: 0;
 }
 </style>
