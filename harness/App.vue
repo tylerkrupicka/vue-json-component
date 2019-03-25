@@ -1,6 +1,5 @@
 <template>
   <div id="app">
-    harness
     <json-view
       :data="data"
       rootKey="view"
@@ -47,7 +46,6 @@ export default Vue.extend({
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   font-size: 20px;
   padding: 20px;
-  background-color: rgba(0, 0, 0, 0.03);
   overflow-x: auto;
   display: flex;
   flex-direction: column;
