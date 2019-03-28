@@ -6,7 +6,7 @@
 
 A collapsable tree view for JSON. This package is loosely based on [vue-json-tree-view](https://github.com/michaelfitzhavey/vue-json-tree-view) with a series of upgrades. I'm not contributing this back to that package because it would require breaking API changes, and I don't have 100% feature parity yet.
 
-![image](https://user-images.githubusercontent.com/5761061/54875519-0d133b80-4dbe-11e9-826e-2e9048f9b1da.png)
+![demo image](https://user-images.githubusercontent.com/5761061/55198958-7fa16400-518e-11e9-8448-7cd028007920.png)
 
 ## Philosophy
 
