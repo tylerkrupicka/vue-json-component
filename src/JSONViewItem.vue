@@ -3,7 +3,7 @@
     <!-- Handle Objects and Arrays-->
     <div v-if="data.type === 'object' || data.type === 'array'">
       <div @click.stop="toggleOpen" class="data-key" :style="keyColor">
-        <div :class="classes"></div>
+        <div :class="classes" :style="arrowStyles"></div>
         {{ data.key }}:
         <span class="properties">&nbsp;{{ lengthString }}</span>
       </div>
@@ -84,6 +84,9 @@ export default Vue.extend({
         "chevron-arrow": true,
         opened: this.open
       };
+    },
+    arrowStyles: function(): object {
+      return { width: this.styles.arrowSize, height: this.styles.arrowSize };
     },
     lengthString: function(): string {
       return this.data.length === 1

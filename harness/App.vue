@@ -4,7 +4,7 @@
       :data="data"
       rootKey="view"
       :maxDepth="1"
-      :styles="{ key: '#0977e6' }"
+      :styles="{ key: '#0977e6', arrowSize: '20px' }"
     ></json-view>
   </div>
 </template>
