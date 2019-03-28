@@ -7,6 +7,7 @@ module.exports = {
     sourceMapExcludeSources: true
   },
   plugins: {
+    typescript2: true,
     vue: {
       css: true
     },

@@ -4,6 +4,8 @@
     "module": "es2015",
     "strict": true,
     "jsx": "preserve",
+    "declaration": true,
+    "declarationDir": "dist/",
     "importHelpers": true,
     "moduleResolution": "node",
     "experimentalDecorators": true,
