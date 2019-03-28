@@ -62,7 +62,8 @@ const defaultStyles = {
   string: "#268bd2",
   number: "#2aa198",
   boolean: "#cb4b16",
-  null: "#6c71c4"
+  null: "#6c71c4",
+  arrowSize: "6px"
 };
 ```
 
