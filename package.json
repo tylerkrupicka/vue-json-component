@@ -1,6 +1,6 @@
 {
   "name": "vue-json-component",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "A VueJS JSON Tree View with no dependencies and module builds.",
   "keywords": [
     "vue",
@@ -18,7 +18,7 @@
   "main": "dist/index.js",
   "module": "dist/index.module.js",
   "unpkg": "dist/index.umd.js",
-  "licence": "MIT",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/tylerkrupicka/vue-json-component.git"
