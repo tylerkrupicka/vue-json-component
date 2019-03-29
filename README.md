@@ -1,7 +1,7 @@
-# vue-json-component
+# Vue JSON Component
 
 
-[![npm version](https://badge.fury.io/js/vue-json-component.svg)](https://badge.fury.io/js/vue-json-component)[![TypeScript](https://badges.frapsoft.com/typescript/code/typescript.png?v=101)](https://github.com/ellerbrock/typescript-badges/)![npm bundle size](https://img.shields.io/bundlephobia/min/vue-json-component.svg)
+[![npm version](https://badge.fury.io/js/vue-json-component.svg)](https://badge.fury.io/js/vue-json-component) [![TypeScript](https://badges.frapsoft.com/typescript/code/typescript.png?v=101)](https://github.com/ellerbrock/typescript-badges/) [![npm bundle size](https://img.shields.io/bundlephobia/min/vue-json-component.svg)] [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 
 [Demo](http://tylerkrupicka.com/vue-json-component/)
 
@@ -19,6 +19,13 @@ This package has two major improvements over predecessors: builds and customizat
 The styles in this package are all scoped, with key colors still being customizable. There are no extra margins or overflow rules and text properties are all inherited from the page. This makes the view much easier to integrate anywhere you need it.
 
 ## Usage
+
+### Install
+
+```bash
+npm i vue-json-component
+yarn add vue-json-component
+```
 
 ### Import Locally
 
