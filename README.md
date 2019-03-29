@@ -92,7 +92,7 @@ const defaultStyles = {
 ### Install
 
 ```bash
-yarn install
+yarn
 ```
 
 ### Hot-Reload Hostapp
