@@ -112,3 +112,9 @@ yarn build
 ```bash
 yarn lint
 ```
+
+## Contributing
+
+Contributions are welcome via pull request. If you want to discuss your feature before committing development time, feel free to open an issue and we can refine the idea.
+
+Thanks!
