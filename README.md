@@ -5,18 +5,20 @@
 
 [Demo](http://tylerkrupicka.com/vue-json-component/)
 
-A collapsable tree view for JSON. This package is loosely based on [vue-json-tree-view](https://github.com/michaelfitzhavey/vue-json-tree-view) with a series of upgrades. I'm not contributing this back to that package because it would require breaking API changes, and there are some features I'm not planning on adding unless people need them. **Contributions welcome!**
+A collapsable tree view for JSON. This package has some similarites with [vue-json-tree-view](https://github.com/michaelfitzhavey/vue-json-tree-view) so I'll address the differences below. I'm not contributing this back to that package because it would require breaking API changes, and the code is entirely different. **Contributions welcome!**
 
 ![demo image](https://user-images.githubusercontent.com/5761061/55198958-7fa16400-518e-11e9-8448-7cd028007920.png)
 
 ## Philosophy
 
-This package has two major improvements over predecessors: builds and customization. For builds, this package ships CommonJS, Module, and Minified builds with limited external dependencies. [vue-json-tree-view](https://github.com/michaelfitzhavey/vue-json-tree-view) bundles in lots of dependencies. I also export global Vue imports, local Vue imports, and TypeScript declarations. The code itself is also only two files with most of the functions being helpers for custom styles.
+This package has a few major improvements over predecessors: builds, styles, and customization. For builds, this package ships CommonJS, Module, and UNPKG builds with no dependencies. [vue-json-tree-view](https://github.com/michaelfitzhavey/vue-json-tree-view) bundles in lots of dependencies -- including lodash. I also export global Vue imports, local Vue imports, and TypeScript declarations. The code itself is about as small as it can be while being easy to follow.
 
 * [vue-json-tree-view (84KB)](https://bundlephobia.com/result?p=vue-json-tree-view@2.1.4)
 * [vue-json-component (8KB)](https://bundlephobia.com/result?p=vue-json-component@0.1.16)
 
 The styles in this package are all scoped, with key colors still being customizable. There are no extra margins or overflow rules and text properties are all inherited from the page. This makes the view much easier to integrate anywhere you need it.
+
+The default color theme is based on solarized, and font weights are modified to increase readability.
 
 ## Usage
 
