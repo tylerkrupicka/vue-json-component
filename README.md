@@ -89,6 +89,25 @@ const defaultStyles = {
 </template>
 ```
 
+### Advanced Features
+
+#### Selected Item Events
+
+You can allow users to click elements, and receive an event when this occurs. The `selected` event will pass you the key, value, and path of the selected value.
+
+```js
+<json-view
+  :data="data"
+  v-on:selected="itemSelected"
+/>
+```
+
+**Event**
+
+* key: __string__
+* value: __string__
+* path: __string__
+
 ## Development
 
 ### Install
