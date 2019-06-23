@@ -93,7 +93,7 @@ const defaultStyles = {
 
 ### Selected Item Events
 
-You can allow users to click elements, and receive an event when this occurs. The `selected` event will pass you the key, value, and path of the selected value.
+You can allow users to click elements, and receive an event when this occurs. The `selected` event will pass you the key, value, and path of the selected value. If you do not listen for the event, the styles will not indicate that values are clickable.
 
 ```js
 <json-view
@@ -104,9 +104,9 @@ You can allow users to click elements, and receive an event when this occurs. Th
 
 **Event**
 
-* key: __string__
-* value: __string__
-* path: __string__
+* key: _string_
+* value: _string_
+* path: _string_
 
 ## Development
 
