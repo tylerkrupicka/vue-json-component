@@ -5,6 +5,7 @@
       :data="parsed"
       :maxDepth="maxDepth"
       :styles="customStyles"
+      v-on:selected="itemSelected"
     />
   </div>
 </template>
@@ -106,6 +107,9 @@ export default Vue.extend({
     },
     isArray: function(val: any): boolean {
       return Array.isArray(val);
+    },
+    itemSelected: function(data: object): void {
+      this.$emit("selected", data);
     }
   },
   computed: {

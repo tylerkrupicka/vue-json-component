@@ -8,6 +8,7 @@
         <span class="properties">&nbsp;{{ lengthString }}</span>
       </div>
       <json-view-item
+        v-on:selected="bubbleSelected"
         v-for="child in data.children"
         :key="getKey(child)"
         :data="child"
@@ -75,6 +76,9 @@ export default Vue.extend({
         value: data.value,
         path: data.path
       } as SelectedData);
+    },
+    bubbleSelected: function(data: Data): void {
+      this.$emit("selected", data);
     },
     getKey: function(value: any): string {
       if (!isNaN(value.key)) {

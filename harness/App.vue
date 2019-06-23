@@ -5,6 +5,7 @@
       rootKey="view"
       :maxDepth="1"
       :styles="{ key: '#0977e6' }"
+      v-on:selected="itemSelected"
     ></json-view>
   </div>
 </template>
@@ -15,6 +16,11 @@ import JSONView from "../src/JSONView.vue";
 
 export default Vue.extend({
   components: { "json-view": JSONView },
+  methods: {
+    itemSelected: function(data: object): void {
+      console.log("event");
+    }
+  },
   computed: {
     data: function() {
       const test = {
