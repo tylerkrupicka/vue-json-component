@@ -8,16 +8,22 @@
         <span class="properties">&nbsp;{{ lengthString }}</span>
       </div>
       <json-view-item
+        v-on:selected="bubbleSelected"
         v-for="child in data.children"
         :key="getKey(child)"
         :data="child"
         v-show="open"
         :maxDepth="maxDepth"
         :styles="styles"
+        :canSelect="canSelect"
       />
     </div>
     <!-- Handle Leaf Values -->
-    <div class="value-key" v-if="data.type === 'value'">
+    <div
+      :class="valueClasses"
+      v-on:click="clickEvent(data)"
+      v-if="data.type === 'value'"
+    >
       <span :style="valueKeyColor"> {{ data.key }}: </span>
       <span :style="getValueStyle(data.value)">
         {{ JSON.stringify(data.value) }}
@@ -27,7 +33,17 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue";
+import Vue, { VueConstructor } from "vue";
+
+export interface SelectedData {
+  key: string;
+  value: string;
+  path: string;
+}
+
+export interface Data {
+  [key: string]: string;
+}
 
 export default Vue.extend({
   name: "json-view-item",
@@ -49,11 +65,26 @@ export default Vue.extend({
     styles: {
       type: Object,
       required: true
+    },
+    canSelect: {
+      type: Boolean,
+      required: false,
+      default: false
     }
   },
   methods: {
     toggleOpen: function(): void {
       this.open = !this.open;
+    },
+    clickEvent: function(data: Data): void {
+      this.$emit("selected", {
+        key: data.key,
+        value: data.value,
+        path: data.path
+      } as SelectedData);
+    },
+    bubbleSelected: function(data: Data): void {
+      this.$emit("selected", data);
     },
     getKey: function(value: any): string {
       if (!isNaN(value.key)) {
@@ -85,10 +116,21 @@ export default Vue.extend({
         opened: this.open
       };
     },
+    valueClasses: function(): object {
+      return {
+        "value-key": true,
+        "can-select": this.canSelect
+      };
+    },
     arrowStyles: function(): object {
       return { width: this.styles.arrowSize, height: this.styles.arrowSize };
     },
     lengthString: function(): string {
+      if (this.data.type === "array") {
+        return this.data.length === 1
+          ? this.data.length + " element"
+          : this.data.length + " elements";
+      }
       return this.data.length === 1
         ? this.data.length + " property"
         : this.data.length + " properties";
@@ -110,9 +152,17 @@ export default Vue.extend({
 
 .value-key {
   font-weight: 600;
-  margin-left: 15px;
+  margin-left: 10px;
+  border-radius: 2px;
   white-space: nowrap;
-  padding: 5px;
+  padding: 5px 5px 5px 10px;
+
+  &.can-select {
+    cursor: pointer;
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.08);
+    }
+  }
 }
 
 .data-key {
