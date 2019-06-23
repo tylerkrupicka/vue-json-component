@@ -114,6 +114,11 @@ export default Vue.extend({
       return { width: this.styles.arrowSize, height: this.styles.arrowSize };
     },
     lengthString: function(): string {
+      if (this.data.type === "array") {
+        return this.data.length === 1
+          ? this.data.length + " element"
+          : this.data.length + " elements";
+      }
       return this.data.length === 1
         ? this.data.length + " property"
         : this.data.length + " properties";
