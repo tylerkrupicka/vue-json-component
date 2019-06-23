@@ -10,7 +10,7 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue";
+import Vue, { VueConstructor } from "vue";
 import JSONView from "../src/JSONView.vue";
 
 export default Vue.extend({

@@ -27,7 +27,7 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue";
+import Vue, { VueConstructor } from "vue";
 
 export default Vue.extend({
   name: "json-view-item",
