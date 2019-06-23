@@ -6,6 +6,7 @@
       :maxDepth="maxDepth"
       :styles="customStyles"
       v-on:selected="itemSelected"
+      :canSelect="hasSelectedListener"
     />
   </div>
 </template>
@@ -127,6 +128,9 @@ export default Vue.extend({
         arrowSize: "6px"
       };
       return Object.assign(target, this.styles);
+    },
+    hasSelectedListener(): boolean {
+      return Boolean(this.$listeners && this.$listeners.selected);
     }
   }
 });

@@ -7,6 +7,8 @@
       :styles="{ key: '#0977e6' }"
       v-on:selected="itemSelected"
     ></json-view>
+    <h5>Events</h5>
+    <div v-for="(event, index) in events" :key="index">{{ event }}</div>
   </div>
 </template>
 
@@ -15,10 +17,16 @@ import Vue, { VueConstructor } from "vue";
 import JSONView from "../src/JSONView.vue";
 
 export default Vue.extend({
+  data: function() {
+    return {
+      events: []
+    };
+  },
   components: { "json-view": JSONView },
   methods: {
-    itemSelected: function(data: object): void {
-      console.log("event");
+    itemSelected: function(data: any): void {
+      // @ts-ignore
+      this.events.push(`Selected: ${data.path} with value ${data.value}`);
     }
   },
   computed: {

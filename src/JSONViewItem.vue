@@ -15,11 +15,12 @@
         v-show="open"
         :maxDepth="maxDepth"
         :styles="styles"
+        :canSelect="canSelect"
       />
     </div>
     <!-- Handle Leaf Values -->
     <div
-      class="value-key"
+      :class="valueClasses"
       v-on:click="clickEvent(data)"
       v-if="data.type === 'value'"
     >
@@ -64,6 +65,11 @@ export default Vue.extend({
     styles: {
       type: Object,
       required: true
+    },
+    canSelect: {
+      type: Boolean,
+      required: false,
+      default: false
     }
   },
   methods: {
@@ -110,6 +116,12 @@ export default Vue.extend({
         opened: this.open
       };
     },
+    valueClasses: function(): object {
+      return {
+        "value-key": true,
+        "can-select": this.canSelect
+      };
+    },
     arrowStyles: function(): object {
       return { width: this.styles.arrowSize, height: this.styles.arrowSize };
     },
@@ -140,9 +152,17 @@ export default Vue.extend({
 
 .value-key {
   font-weight: 600;
-  margin-left: 15px;
+  margin-left: 10px;
+  border-radius: 2px;
   white-space: nowrap;
-  padding: 5px;
+  padding: 5px 5px 5px 10px;
+
+  &.can-select {
+    cursor: pointer;
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.08);
+    }
+  }
 }
 
 .data-key {
