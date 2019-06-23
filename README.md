@@ -89,9 +89,9 @@ const defaultStyles = {
 </template>
 ```
 
-### Advanced Features
+## Advanced Features
 
-#### Selected Item Events
+### Selected Item Events
 
 You can allow users to click elements, and receive an event when this occurs. The `selected` event will pass you the key, value, and path of the selected value.
 
