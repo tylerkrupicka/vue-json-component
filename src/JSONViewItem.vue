@@ -17,7 +17,11 @@
       />
     </div>
     <!-- Handle Leaf Values -->
-    <div class="value-key" v-if="data.type === 'value'">
+    <div
+      class="value-key"
+      v-on:click="clickEvent(data)"
+      v-if="data.type === 'value'"
+    >
       <span :style="valueKeyColor"> {{ data.key }}: </span>
       <span :style="getValueStyle(data.value)">
         {{ JSON.stringify(data.value) }}
@@ -28,6 +32,16 @@
 
 <script lang="ts">
 import Vue, { VueConstructor } from "vue";
+
+export interface SelectedData {
+  key: string;
+  value: string;
+  path: string;
+}
+
+export interface Data {
+  [key: string]: string;
+}
 
 export default Vue.extend({
   name: "json-view-item",
@@ -54,6 +68,13 @@ export default Vue.extend({
   methods: {
     toggleOpen: function(): void {
       this.open = !this.open;
+    },
+    clickEvent: function(data: Data): void {
+      this.$emit("selected", {
+        key: data.key,
+        value: data.value,
+        path: data.path
+      } as SelectedData);
     },
     getKey: function(value: any): string {
       if (!isNaN(value.key)) {

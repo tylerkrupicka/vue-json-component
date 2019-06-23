@@ -39,17 +39,32 @@ export default Vue.extend({
     "json-view-item": JSONViewItem
   },
   methods: {
-    build: function(key: string, val: any, depth: number): object {
+    build: function(
+      key: string,
+      val: any,
+      depth: number,
+      path: string,
+      includeKey: boolean
+    ): object {
       if (this.isObject(val)) {
         // Build Object
         let children = [];
         for (let [childKey, childValue] of Object.entries(val)) {
-          children.push(this.build(childKey, childValue, depth + 1));
+          children.push(
+            this.build(
+              childKey,
+              childValue,
+              depth + 1,
+              includeKey ? `${path}${key}.` : `${path}`,
+              true
+            )
+          );
         }
         return {
           key: key,
           type: "object",
           depth: depth,
+          path: path,
           length: children.length,
           children: children
         };
@@ -57,12 +72,21 @@ export default Vue.extend({
         // Build Array
         let children = [];
         for (let i = 0; i < val.length; i++) {
-          children.push(this.build(i.toString(), val[i], depth + 1));
+          children.push(
+            this.build(
+              i.toString(),
+              val[i],
+              depth + 1,
+              includeKey ? `${path}${key}[${i}].` : `${path}`,
+              false
+            )
+          );
         }
         return {
           key: key,
           type: "array",
           depth: depth,
+          path: path,
           length: children.length,
           children: children
         };
@@ -71,6 +95,7 @@ export default Vue.extend({
         return {
           key: key,
           type: "value",
+          path: includeKey ? path + key : path.slice(0, -1),
           depth: depth,
           value: val
         };
@@ -85,7 +110,7 @@ export default Vue.extend({
   },
   computed: {
     parsed: function(): object {
-      return this.build(this.rootKey, { ...this.data }, 0);
+      return this.build(this.rootKey, { ...this.data }, 0, "", true);
     },
     customStyles: function(): object {
       const target = {

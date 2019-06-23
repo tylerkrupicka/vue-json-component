@@ -25,13 +25,13 @@ export default Vue.extend({
         list: [
           "fun",
           {
-            object: {
-              worst: true
+            test: {
+              passed: true
             }
           }
         ],
         object: {
-          worst: "nightmare"
+          working: "properly"
         }
       };
       return test;
