@@ -5,7 +5,7 @@
       <div @click.stop="toggleOpen" class="data-key" :style="keyColor">
         <div :class="classes" :style="arrowStyles"></div>
         {{ data.key }}:
-        <span class="properties">&nbsp;{{ lengthString }}</span>
+        <span class="properties">{{ lengthString }}</span>
       </div>
       <json-view-item
         v-on:selected="bubbleSelected"
@@ -24,10 +24,10 @@
       v-on:click="clickEvent(data)"
       v-if="data.type === 'value'"
     >
-      <span :style="valueKeyColor"> {{ data.key }}: </span>
-      <span :style="getValueStyle(data.value)">
-        {{ JSON.stringify(data.value) }}
-      </span>
+      <span :style="valueKeyColor">{{ data.key }}:</span>
+      <span :style="getValueStyle(data.value)">{{
+        JSON.stringify(data.value)
+      }}</span>
     </div>
   </div>
 </template>
@@ -181,6 +181,7 @@ export default Vue.extend({
   .properties {
     font-weight: 300;
     opacity: 0.6;
+    margin-left: 4px;
     user-select: none;
   }
 }
