@@ -19,8 +19,7 @@ export default Vue.extend({
   name: "json-view",
   props: {
     data: {
-      required: true,
-      type: Object
+      required: true
     },
     rootKey: {
       type: String,
