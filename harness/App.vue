@@ -7,6 +7,9 @@
       :styles="{ key: '#0977e6' }"
       v-on:selected="itemSelected"
     ></json-view>
+    <json-view rootKey="result" data="some string" />
+    <json-view rootKey="result" :data="2" />
+
     <h5>Events</h5>
     <div v-for="(event, index) in events" :key="index">{{ event }}</div>
   </div>

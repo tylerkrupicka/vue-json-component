@@ -115,7 +115,16 @@ export default Vue.extend({
   },
   computed: {
     parsed: function(): object {
-      return this.build(this.rootKey, { ...this.data }, 0, "", true);
+      if (typeof this.data === "object") {
+        return this.build(this.rootKey, { ...this.data }, 0, "", true);
+      }
+      return {
+        key: this.rootKey,
+        type: "value",
+        path: "",
+        depth: 0,
+        value: this.data
+      };
     },
     customStyles: function(): object {
       const target = {
