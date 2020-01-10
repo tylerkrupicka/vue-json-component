@@ -27,6 +27,7 @@
     "serve": "vue-cli-service serve harness/main.ts",
     "build": "bili",
     "build:docs": "vue-cli-service build --name JSONView --dest docs harness/main.ts",
+    "deploy:docs": "yarn build:docs && gh-pages -d docs",
     "lint": "vue-cli-service lint"
   },
   "files": [
