@@ -142,6 +142,8 @@ export default Vue.extend({
   --vjc-boolean-color: #cb4b16;
   --vjc-null-color: #6c71c4;
   --vjc-arrow-size: 6px;
+  --vjc-arrow-color: #444;
+  --vjc-hover-color: rgba(0, 0, 0, 0.15);
 
   margin-left: 0;
   width: 100%;
@@ -150,5 +152,7 @@ export default Vue.extend({
 .root-item.dark {
   --vjc-key-color: #80d8ff;
   --vjc-valueKey-color: #fdf6e3;
+  --vjc-hover-color: rgba(255, 255, 255, 0.15);
+  --vjc-arrow-color: #fdf6e3;
 }
 </style>

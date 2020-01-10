@@ -70,7 +70,7 @@ export default Vue.extend({
       };
       return test;
     },
-    colorScheme: function() {
+    colorScheme: function(): string {
       return this.dark ? 'dark' : 'light';
     }
   }
@@ -97,6 +97,7 @@ export default Vue.extend({
 
 .dark {
   background-color: #121212;
+  border-radius: 4px;
 }
 </style>
 

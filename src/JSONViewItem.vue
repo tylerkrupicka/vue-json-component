@@ -24,9 +24,9 @@
       v-if="data.type === 'value'"
     >
       <span class="value-key">{{ data.key }}:</span>
-      <span :style="getValueStyle(data.value)">{{
-        JSON.stringify(data.value)
-      }}</span>
+      <span :style="getValueStyle(data.value)">
+        {{ JSON.stringify(data.value) }}
+      </span>
     </div>
   </div>
 </template>
@@ -163,7 +163,7 @@ export default Vue.extend({
   padding: 5px;
 
   &:hover {
-    background-color: rgba(0, 0, 0, 0.08);
+    background-color: var(--vjc-hover-color);
   }
 
   .properties {
@@ -176,8 +176,8 @@ export default Vue.extend({
 
 .chevron-arrow {
   flex-shrink: 0;
-  border-right: 4px solid #444;
-  border-bottom: 4px solid #444;
+  border-right: 4px solid var(--vjc-arrow-color);
+  border-bottom: 4px solid var(--vjc-arrow-color);
   width: var(--vjc-arrow-size);
   height: var(--vjc-arrow-size);
   margin-right: 20px;
