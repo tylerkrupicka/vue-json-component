@@ -141,7 +141,7 @@ export default Vue.extend({
 
 <style lang="scss" scoped>
 .json-view-item:not(.root-item) {
-  margin-left: 20px;
+  margin-left: 15px;
 }
 
 .value-key {
