@@ -17,7 +17,7 @@ This package has a few major improvements over predecessors: builds, styles, and
 
 The styles in this package are all scoped, with key colors still being customizable. There are no extra margins or overflow rules and text properties are all inherited from the page. This makes the view much easier to integrate anywhere you need it.
 
-The default color theme is based on solarized, and font weights are modified to increase readability.
+The default color theme is based on solarized, and font weights are modified to increase readability. The component uses semantic HTML elements and tries to be fully keyboard accessible.
 
 ## Usage
 

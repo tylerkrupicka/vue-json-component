@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <div :class="{ dark: dark }">
+    <div :class="{ tree: true, dark: dark }">
       <json-view
         :data="data"
         rootKey="view"
@@ -96,7 +96,11 @@ export default Vue.extend({
   cursor: pointer;
 }
 
-.dark {
+.tree {
+  padding: 5px;
+}
+
+.tree.dark {
   background-color: #121212;
   border-radius: 4px;
 }

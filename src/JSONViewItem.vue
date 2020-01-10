@@ -2,11 +2,15 @@
   <div class="json-view-item">
     <!-- Handle Objects and Arrays-->
     <div v-if="data.type === 'object' || data.type === 'array'">
-      <div @click.stop="toggleOpen" class="data-key">
+      <button
+        @click.stop="toggleOpen"
+        class="data-key"
+        :aria-expanded="open ? 'true' : 'false'"
+      >
         <div :class="classes"></div>
         {{ data.key }}:
         <span class="properties">{{ lengthString }}</span>
-      </div>
+      </button>
       <json-view-item
         v-on:selected="bubbleSelected"
         v-for="child in data.children"
@@ -21,6 +25,10 @@
     <div
       :class="valueClasses"
       v-on:click="clickEvent(data)"
+      @keyup.enter="clickEvent(data)"
+      @keyup.space="clickEvent(data)"
+      :role="canSelect ? 'button' : undefined"
+      :tabindex="canSelect ? '0' : undefined"
       v-if="data.type === 'value'"
     >
       <span class="value-key">{{ data.key }}:</span>
@@ -157,10 +165,23 @@ export default Vue.extend({
     &:hover {
       background-color: rgba(0, 0, 0, 0.08);
     }
+
+    &:focus {
+      outline: 2px solid var(--vjc-hover-color);
+    }
   }
 }
 
 .data-key {
+  // Button overrides
+  font-size: 100%;
+  font-family: inherit;
+  border: 0;
+  padding: 0;
+  background-color: transparent;
+  width: 100%;
+
+  // Normal styles
   color: var(--vjc-key-color);
   display: flex;
   align-items: center;
@@ -172,6 +193,14 @@ export default Vue.extend({
 
   &:hover {
     background-color: var(--vjc-hover-color);
+  }
+
+  &:focus {
+    outline: 2px solid var(--vjc-hover-color);
+  }
+
+  &::-moz-focus-inner {
+    border: 0;
   }
 
   .properties {
