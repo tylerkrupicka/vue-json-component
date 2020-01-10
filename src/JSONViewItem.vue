@@ -2,7 +2,11 @@
   <div class="json-view-item">
     <!-- Handle Objects and Arrays-->
     <div v-if="data.type === 'object' || data.type === 'array'">
-      <button @click.stop="toggleOpen" class="data-key">
+      <button
+        @click.stop="toggleOpen"
+        class="data-key"
+        :aria-expanded="open ? 'true' : 'false'"
+      >
         <div :class="classes"></div>
         {{ data.key }}:
         <span class="properties">{{ lengthString }}</span>
