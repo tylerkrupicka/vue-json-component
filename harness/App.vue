@@ -56,6 +56,7 @@ export default Vue.extend({
         works: true,
         number: 100,
         missing: null,
+        undefined: undefined,
         list: [
           'fun',
           {

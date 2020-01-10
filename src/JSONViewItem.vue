@@ -25,7 +25,7 @@
     >
       <span class="value-key">{{ data.key }}:</span>
       <span :style="getValueStyle(data.value)">
-        {{ JSON.stringify(data.value) }}
+        {{ dataValue }}
       </span>
     </div>
   </div>
@@ -99,6 +99,8 @@ export default Vue.extend({
           return { color: 'var(--vjc-boolean-color)' };
         case 'object':
           return { color: 'var(--vjc-null-color)' };
+        case 'undefined':
+          return { color: 'var(--vjc-null-color)' };
         default:
           return { color: 'var(--vjc-valueKey-color)' };
       }
@@ -126,6 +128,12 @@ export default Vue.extend({
       return this.data.length === 1
         ? this.data.length + ' property'
         : this.data.length + ' properties';
+    },
+    dataValue: function(): string {
+      if (typeof this.data.value === 'undefined') {
+        return 'undefined';
+      }
+      return JSON.stringify(this.data.value);
     }
   }
 });
