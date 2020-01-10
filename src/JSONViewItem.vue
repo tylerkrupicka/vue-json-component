@@ -25,6 +25,10 @@
     <div
       :class="valueClasses"
       v-on:click="clickEvent(data)"
+      @keyup.enter="clickEvent(data)"
+      @keyup.space="clickEvent(data)"
+      :role="canSelect ? 'button' : undefined"
+      :tabindex="canSelect ? '0' : undefined"
       v-if="data.type === 'value'"
     >
       <span class="value-key">{{ data.key }}:</span>
@@ -160,6 +164,10 @@ export default Vue.extend({
     cursor: pointer;
     &:hover {
       background-color: rgba(0, 0, 0, 0.08);
+    }
+
+    &:focus {
+      outline: 2px solid var(--vjc-hover-color);
     }
   }
 }
