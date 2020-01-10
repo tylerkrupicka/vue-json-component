@@ -6,18 +6,19 @@
         rootKey="view"
         :maxDepth="1"
         :styles="{ key: '#0977e6' }"
-        :colorScheme="dark ? 'dark' : 'light'"
+        :colorScheme="colorScheme"
         v-on:selected="itemSelected"
       ></json-view>
       <json-view
-        rootKey="result"
-        data="some string"
-        :colorScheme="dark ? 'dark' : 'light'"
+        rootKey="string"
+        data="Not an object"
+        :colorScheme="colorScheme"
       />
       <json-view
-        rootKey="result"
-        :data="2"
-        :colorScheme="dark ? 'dark' : 'light'"
+        rootKey="customization"
+        data="Using CSS Variables"
+        class="customize"
+        :colorScheme="colorScheme"
       />
     </div>
 
@@ -68,6 +69,9 @@ export default Vue.extend({
         }
       };
       return test;
+    },
+    colorScheme: function() {
+      return this.dark ? 'dark' : 'light';
     }
   }
 });
@@ -93,5 +97,14 @@ export default Vue.extend({
 
 .dark {
   background-color: #121212;
+}
+</style>
+
+<style lang="scss" scoped>
+.customize {
+  --vjc-valueKey-color: green;
+}
+.customize.dark {
+  --vjc-valueKey-color: red;
 }
 </style>

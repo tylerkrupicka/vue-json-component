@@ -1,6 +1,6 @@
 <template>
   <json-view-item
-    :class="{ 'root-item': true, dark: colorScheme === 'dark' }"
+    :class="[{ 'root-item': true, dark: colorScheme === 'dark' }]"
     :data="parsed"
     :maxDepth="maxDepth"
     v-on:selected="itemSelected"
@@ -148,11 +148,7 @@ export default Vue.extend({
   height: auto;
 }
 .root-item.dark {
-  --vjc-key-color: #0977e6;
+  --vjc-key-color: #80d8ff;
   --vjc-valueKey-color: #fdf6e3;
-  --vjc-string-color: #268bd2;
-  --vjc-number-color: #2aa198;
-  --vjc-boolean-color: #cb4b16;
-  --vjc-null-color: #6c71c4;
 }
 </style>
