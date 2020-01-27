@@ -1,44 +1,44 @@
 <template>
-  <div id="json-view">
-    <json-view-item
-      id="root-item"
-      :data="parsed"
-      :maxDepth="maxDepth"
-      :styles="customStyles"
-      v-on:selected="itemSelected"
-      :canSelect="hasSelectedListener"
-    />
-  </div>
+  <json-view-item
+    :class="[{ 'root-item': true, dark: colorScheme === 'dark' }]"
+    :data="parsed"
+    :maxDepth="maxDepth"
+    v-on:selected="itemSelected"
+    :canSelect="hasSelectedListener"
+  />
 </template>
 
 <script lang="ts">
-import Vue, { VueConstructor } from "vue";
-import JSONViewItem from "./JSONViewItem.vue";
+import Vue, { VueConstructor } from 'vue';
+import JSONViewItem from './JSONViewItem.vue';
+
+const isDarkMediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
+  .matches;
 
 export default Vue.extend({
-  name: "json-view",
+  name: 'json-view',
   props: {
     data: {
-      required: true,
-      type: Object
+      required: true
     },
     rootKey: {
       type: String,
       required: false,
-      default: "root"
+      default: 'root'
     },
     maxDepth: {
       type: Number,
       required: false,
       default: 1
     },
-    styles: {
-      type: Object,
-      required: false
+    colorScheme: {
+      type: String,
+      required: false,
+      default: 'light'
     }
   },
   components: {
-    "json-view-item": JSONViewItem
+    'json-view-item': JSONViewItem
   },
   methods: {
     build: function(
@@ -64,7 +64,7 @@ export default Vue.extend({
         }
         return {
           key: key,
-          type: "object",
+          type: 'object',
           depth: depth,
           path: path,
           length: children.length,
@@ -86,7 +86,7 @@ export default Vue.extend({
         }
         return {
           key: key,
-          type: "array",
+          type: 'array',
           depth: depth,
           path: path,
           length: children.length,
@@ -96,7 +96,7 @@ export default Vue.extend({
         // Build Value
         return {
           key: key,
-          type: "value",
+          type: 'value',
           path: includeKey ? path + key : path.slice(0, -1),
           depth: depth,
           value: val
@@ -104,30 +104,27 @@ export default Vue.extend({
       }
     },
     isObject: function(val: any): boolean {
-      return typeof val === "object" && val !== null && !this.isArray(val);
+      return typeof val === 'object' && val !== null && !this.isArray(val);
     },
     isArray: function(val: any): boolean {
       return Array.isArray(val);
     },
     itemSelected: function(data: object): void {
-      this.$emit("selected", data);
+      this.$emit('selected', data);
     }
   },
   computed: {
     parsed: function(): object {
-      return this.build(this.rootKey, { ...this.data }, 0, "", true);
-    },
-    customStyles: function(): object {
-      const target = {
-        key: "#002b36",
-        valueKey: "#073642",
-        string: "#268bd2",
-        number: "#2aa198",
-        boolean: "#cb4b16",
-        null: "#6c71c4",
-        arrowSize: "6px"
+      if (typeof this.data === 'object') {
+        return this.build(this.rootKey, { ...this.data }, 0, '', true);
+      }
+      return {
+        key: this.rootKey,
+        type: 'value',
+        path: '',
+        depth: 0,
+        value: this.data
       };
-      return Object.assign(target, this.styles);
     },
     hasSelectedListener(): boolean {
       return Boolean(this.$listeners && this.$listeners.selected);
@@ -136,12 +133,26 @@ export default Vue.extend({
 });
 </script>
 
-<style lang="scss">
-#json-view {
+<style lang="scss" scoped>
+.root-item {
+  --vjc-key-color: #0977e6;
+  --vjc-valueKey-color: #073642;
+  --vjc-string-color: #268bd2;
+  --vjc-number-color: #2aa198;
+  --vjc-boolean-color: #cb4b16;
+  --vjc-null-color: #6c71c4;
+  --vjc-arrow-size: 6px;
+  --vjc-arrow-color: #444;
+  --vjc-hover-color: rgba(0, 0, 0, 0.2);
+
+  margin-left: 0;
   width: 100%;
   height: auto;
 }
-#root-item {
-  margin-left: 0;
+.root-item.dark {
+  --vjc-key-color: #80d8ff;
+  --vjc-valueKey-color: #fdf6e3;
+  --vjc-hover-color: rgba(255, 255, 255, 0.2);
+  --vjc-arrow-color: #fdf6e3;
 }
 </style>

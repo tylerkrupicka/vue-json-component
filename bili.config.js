@@ -1,8 +1,8 @@
 module.exports = {
-  input: "src/index.ts",
+  input: 'src/index.ts',
   output: {
-    format: ["cjs", "umd", "esm"],
-    moduleName: "vue-json-component",
+    format: ['cjs', 'umd', 'esm'],
+    moduleName: 'vue-json-component',
     sourceMap: true,
     sourceMapExcludeSources: true
   },
@@ -14,11 +14,11 @@ module.exports = {
     babel: { runtimeHelpers: true }
   },
   extendConfig(config, { format }) {
-    if (format === "umd") {
+    if (format === 'umd') {
       config.output.minify = true;
     }
-    if (format === "esm") {
-      config.output.fileName = "[name].module.js";
+    if (format === 'esm') {
+      config.output.fileName = '[name].module.js';
     }
     return config;
   }
