@@ -35,6 +35,11 @@ export default Vue.extend({
       type: String,
       required: false,
       default: 'light'
+    },
+    selection: {
+      type: Array,
+      required: false,
+      default: () => []
     }
   },
   components: {
@@ -68,7 +73,8 @@ export default Vue.extend({
           depth: depth,
           path: path,
           length: children.length,
-          children: children
+          children: children,
+          selected: this.selection.includes(path)
         };
       } else if (this.isArray(val)) {
         // Build Array
@@ -90,16 +96,19 @@ export default Vue.extend({
           depth: depth,
           path: path,
           length: children.length,
-          children: children
+          children: children,
+          selected: this.selection.includes(path)
         };
       } else {
         // Build Value
+        const valuePath = includeKey ? path + key : path.slice(0, -1);
         return {
           key: key,
           type: 'value',
-          path: includeKey ? path + key : path.slice(0, -1),
+          path: valuePath,
           depth: depth,
-          value: val
+          value: val,
+          selected: this.selection.includes(valuePath)
         };
       }
     },
