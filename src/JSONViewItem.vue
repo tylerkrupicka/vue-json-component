@@ -118,13 +118,15 @@ export default Vue.extend({
     classes: function(): object {
       return {
         'chevron-arrow': true,
-        opened: this.open
+        opened: this.open,
+        'is-selected': this.isSelected
       };
     },
     valueClasses: function(): object {
       return {
         'value-key': true,
-        'can-select': this.canSelect
+        'can-select': this.canSelect,
+        'is-selected': this.isSelected
       };
     },
     lengthString: function(): string {
@@ -142,6 +144,9 @@ export default Vue.extend({
         return 'undefined';
       }
       return JSON.stringify(this.data.value);
+    },
+    isSelected() {
+      return this.data.selected;
     }
   }
 });
@@ -168,6 +173,10 @@ export default Vue.extend({
 
     &:focus {
       outline: 2px solid var(--vjc-hover-color);
+    }
+
+    &.is-selected {
+      background-color: rgba(0, 0, 0, 0.08);
     }
   }
 }
@@ -197,6 +206,10 @@ export default Vue.extend({
 
   &:focus {
     outline: 2px solid var(--vjc-hover-color);
+  }
+
+  &.is-selected {
+    background-color: var(--vjc-hover-color);
   }
 
   &::-moz-focus-inner {

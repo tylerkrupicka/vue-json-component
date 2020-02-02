@@ -8,6 +8,7 @@
         :styles="{ key: '#0977e6' }"
         :colorScheme="colorScheme"
         v-on:selected="itemSelected"
+        :selection="selectedItems"
       ></json-view>
       <json-view
         rootKey="string"
@@ -36,7 +37,8 @@ export default Vue.extend({
   data: function() {
     return {
       events: [],
-      dark: false
+      dark: false,
+      selectedItems: []
     };
   },
   components: { 'json-view': JSONView },
@@ -44,6 +46,7 @@ export default Vue.extend({
     itemSelected: function(data: any): void {
       // @ts-ignore
       this.events.push(`Selected: ${data.path} with value ${data.value}`);
+      this.selectedItems.push(data.path);
     },
     toggleDark: function(): void {
       this.dark = !this.dark;
