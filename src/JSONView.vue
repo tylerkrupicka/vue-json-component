@@ -12,7 +12,7 @@
 import Vue, { VueConstructor } from 'vue';
 import JSONViewItem from './JSONViewItem.vue';
 
-const isDarkMediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
+const isDarkMediaQuery = window && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)')
   .matches;
 
 export default Vue.extend({
